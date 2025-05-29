@@ -1,0 +1,460 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   
+    <title>Blog - FitZone Fitness Center</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+    :root {
+        --primaryC1: #ff914d;
+        --primaryC2: #FFA630;
+        --primaryC3: #003366;
+        --primaryC4: #0474BA;
+        --primaryC5: #00A7E1;
+        --background-color1: #524f4f;
+        --background-color2: #0c0c0c;
+        --background-color3: #EBEBEB;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right,rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2)), 
+        url(assets/dumbell.png) no-repeat center;
+        color: var(--background-color2);
+        background-size: cover;
+    }
+
+    header {
+        background-color: transparent;
+        color: var(--background-color3);
+        text-align: center;
+        padding: 10px 20px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .blog-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        justify-items: center;
+    }
+
+    .blog-card {
+        background: var(--background-color3);
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .video-card {
+        background: var(--background-color3);
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-left: 890px;
+        width: 1200px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover,
+    .video-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .video-card iframe{
+        width: 100%;
+        height: 500px;
+    }
+
+    .blog-card h2,
+    .video-card h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: var(--background-color2);
+    }
+
+    .blog-card p {
+        font-size: 16px;
+        color: var(--background-color2);
+        margin-bottom: 15px;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: var(--background-color2);
+    }
+
+    .modal-content {
+        background-color: var(--background-color3);
+        margin: 5% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--background-color3);
+    }
+
+    .modal-header h2 {
+        color: var(--primaryC1);
+        margin: 0;
+    }
+
+    .close-btn {
+        color: var(--background-color1);
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        color: var(--background-color2);
+    }
+
+    .modal-body {
+        text-align: left;
+        line-height: 1.6;
+    }
+
+    .modal-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+
+    .read-more {
+        background: var(--primaryC1);
+        color: var(--background-color3);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+        margin-top: auto;
+        align-self: center;
+    }
+
+    .read-more:hover {
+        background-color: var(--primaryC3);
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FitZone Fitness Center Blog</h1>
+</header>
+
+<main class="blog-container">
+    <div class="blog-card">
+        <img src="assets/blog2.png" alt="Exercises for Beginners">
+        <h2>The Best Gym Workout Plan for Beginers</h2>
+        <p>If you're just getting started at the gym, it can feel challenging knowing what to do and how to shape your visits to the gym. What are your goals?...</p>
+        <button class="read-more" data-modal="modal1">Read More</button>
+    </div>
+
+    <div class="blog-card">
+        <img src="assets/blog3.png" alt="Healthy Eating Tips">
+        <h2>Healthy Eating Tips for Weight Loss</h2>
+        <p>Eating right is key to losing weight. Discover the best foods to help you achieve your goals...</p>
+        <button class="read-more" data-modal="modal2">Read More</button>
+    </div>
+
+    <div class="blog-card">
+        <img src="assets/blog4preg.png" alt="Fitness Motivation">
+        <h2>Can You Use the Treadmill While Pregnant?</h2>
+        <p>Staying active while pregnant is important for your own physical and mental health, and for the health of your baby too. It can even contribute to an easier birth! ...</p>
+        <button class="read-more" data-modal="modal3">Read More</button>
+    </div>
+
+    <div class="blog-card">
+        <img src="assets/blog4.png" alt="Chilli Prawn Linguine Pasta">
+        <h2>Chilli Prawn Linguine Pasta</h2>
+        <p>While most people want to build muscle for aesthetic reasons, there are so many health benefits too.....</p>
+        <button class="read-more" data-modal="modal4">Read More</button>
+    </div>
+
+    <div class="blog-card">
+        <img src="assets/blog1.png" alt="Gym Workout Plan">
+        <h2>The Best Gym Workout Plan For Gaining Muscle</h2>
+        <p>While most people want to build muscle for aesthetic reasons, there are so many health benefits too...</p>
+        <button class="read-more" data-modal="modal5">Read More</button>
+    </div>
+
+    <div class="blog-card">
+        <img src="assets/blog5.png" alt="Banana Chocolate Trifle">
+        <h2>Banana Chocolate Trifle</h2>
+        <p>A delicious and healthy dessert option for fitness enthusiasts...</p>
+        <button class="read-more" data-modal="modal6">Read More</button>
+    </div>
+
+    <div class="video-card">
+        <div class="video-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/digpucxFbMo?si=1ZnzbfGfiEot3sbb" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <h2>LOSE BELLY FAT IN 7 DAYS Challenge</h2>
+        <p>Lose Belly Fat In 1 Week At Home</p>
+    </div>
+</main>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>The Best Gym Workout Plan for Beginers</h2>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <img src="assets/blog2.png" alt="Exercises for Beginners">
+            <h3>Why Are Workout Plans So Useful For Beginners At the Gym?</h3><br>
+            <p>Having a workout plan is beneficial for a few reasons. 
+
+                Knowing what you need to do each workout can make each gym session a little smoother for beginners. It means you can simply turn up, follow your plan, and head home, rather than making it up as you go along. Plus, you can research your exercises beforehand to feel confident in how to perform them. This can help to ease any gymtimidation you may be experiencing and make your gym sessions more comfortable.
+                
+                Having a workout plan is also one of the best ways to achieve your fitness goals. It allows for consistency and progressive overload, which are key to building muscle and improving your strength and endurance.
+                
+                A workout plan can also help beginners avoid overtraining and undertraining. It allows for progress to be tracked and means you make the most of your time at the gym.</p><br>
+            <h3>**What Should Beginners Consider When Creating a Gym Workout Plan? **</h3><br>
+            <p>Creating a workout plan for the gym can be a useful way for beginners to set specific fitness goals and stay motivated as they progress. Here are some steps that you can follow to create a workout plan:</p><br>
+            <ol>
+                <li>Determine your fitness goals:</li><br>
+                <p>What do you want to achieve through your workouts? Do you want to build muscle, lose weight, or improve your cardiovascular endurance? Having specific goals in mind will help you create a workout plan that's perfectly tailored to your needs.</p><br>
+                <li>Choose exercises</li><br>
+                <p>Select exercises that will help you work towards your fitness goals. Consider choosing a mix of exercises that target different muscle groups, including exercises for the upper body, lower body, and core, and make sure to include a mix of compound and isolation exercises.</p><br>
+                <li>Plan your workouts:</li><br>
+                <p>Determine how many days per week you want to work out, and schedule your workouts accordingly. Consider breaking up your workouts into muscle groups or focusing on different goals in each gym session. For example, strength in one, cardio in another.</p>
+                <li>Set a schedule:</li><br>
+                <p>Choose specific times of the day or week to complete your workouts. Make sure to set aside enough time to complete your workouts, and try to be consistent with your schedule.</p><br>
+                <li>Track your progress:</li><br>
+                <p>Keep a record of your workouts, using either a specific app, making notes on your phone or even writing on a good old-fashioned piece of paper. Include the exercises you completed, the number of sets and reps, and the weights you used. This will help you to see your progress over time and adjust your workouts as needed.</p><br>
+            </ol>
+            <p>Remember to start slowly and gradually increase the intensity of your workouts as you become more comfortable and confident in the gym. Consult a personal trainer or fitness professional if you have any questions or concerns about creating a workout plan.</p><br>
+        </div>
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Healthy Eating Tips for Weight Loss</h2>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <img src="assets/blog3.png" alt="Healthy Eating Tips">
+            <p>Eating right is key to losing weight. Discover the best foods to help you achieve your goals. Focus on whole grains, lean proteins, and healthy fats. Avoid processed foods and stay hydrated for better results.</p><br>
+            <h3>Is An Understanding of Calories Essential For Weight Loss?</h3><br>
+            <p>Here at FitZone we’re keen to support you in your health and fitness journey. If your goal is working towards losing weight, we believe it’s best to approach this a gradual and sustainable way, combining healthy diet changes and exercise to keep your body in tip top shape. While very low calorie ‘crash’ diets may seem appealing if you’re hoping to achieve your goal quickly, it’s almost always more effective in the long term to work on healthy lifestyle changes that will have positive, sustainable benefits to your physical and mental wellbeing. This means gradual changes to your calorie consumption and making healthy, micronutrient-rich food choices rather than extreme changes that could have a negative impact on your health. 
+
+                While a calorie-tracking approach to nutrition can help build an understanding of which types of food may be best for achieving healthy weight loss goals, it may not suit everyone. If you’re overly concerned about your weight, speak to your doctor, a dietician or a nutritionist who may be able to work up a meal plan that suits your body type.</p><br>
+            <h3>What Are Calories?</h3><br>
+            <p>Calories are a  measure of the energy that food and drink provide to our bodies, and are vital fuel that we need to function, from our brain to our biceps. Food is made up of macronutrients known as protein, carbohydrates and fats - which all play a different role within your body. They all have different energy values which influence how many calories of energy we get when we consume them.</p><br>
+            <h3>How Do Calories Affect Weight Loss?</h3><br>
+            <p>If we regularly consume more calories than we burn, our body will store those additional calories as fat. A repeated excess of around 500+ calories over your daily burn number is likely to lead to gradual weight gain. Likewise, cutting your calories to around 500 calories below your daily burn amount is likely to lead to a healthy and steady amount of weight loss. However do bear in mind, these numbers are a guideline figure only and will differ depending on your current build, health and genetic make up. 
+
+                The first step in determining how many calories you may want to aim towards for weight loss is understanding your BMR and TDEE - read on to find out more.</p><br>
+        </div>
+    </div>
+</div>
+
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Can You Use the Treadmill While Pregnant?</h2>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <img src="assets/blog4preg.png" alt="pregnant">
+            <p>Whether you're a regular runner, a keen walker, or just starting your fitness journey, here's what you need to know about using the treadmill while pregnant, including advice on safety, benefits, and proper technique.</p><br>
+            <h3>Can Pregnant Women Use the Treadmill?</h3><br>
+            <p>Staying safe is a key concern when exercising during pregnancy. While this looks different for everyone depending on their pre-pregnancy fitness levels as well as their unique pregnancy journey, using the treadmill is generally considered safe throughout the entire pregnancy.
+
+                Unlike walking or running outdoors, treadmills give you a comfortable and controlled environment and allow you to easily adjust your workout intensity. As your body changes, you can even use the handrails for support.
+                
+                Although treadmill training is general considered safe in pregnancy, take the necessary precautions and listen to your healthcare team’s advice</p><br>
+            <h3>What Are the Benefits of Using the Treadmill During Pregnancy?</h3><br>
+            <p>Using the treadmill during pregnancy can support your pregnancy journey in many ways that are beneficial to you and your baby now and long after little one is here.</p><br>
+            <ul>
+                <li>Improves cardiovascular health, blood pressure, and circulation</li>
+                <li>Helps with weight management throughout pregnancy</li>
+                <li>Reduces risk of gestational diabetes through improved insulin sensitivity</li>
+                <li>Helps you stick to your healthy active routine</li>
+                <li>Increases mood and decreases anxiety due to endorphin release</li>
+                <li>Stronger pelvic floor muscles for labour and recovery</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Chilli Prawn Linguine Pasta</h2>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <img src="assets/blog4.png" alt="Chilli Prawn Linguine Pasta">
+            <p><strong>Serves:</strong> 2 | <strong>Prep time:</strong> 10 mins | <strong>Cook time:</strong> 15 mins</p>
+            <p><strong>Ingredients:</strong></p>
+            <ul>
+                <li>150g linguine pasta</li>
+                <li>2 garlic cloves, crushed</li>
+                <li>½ tsp chili flakes</li>
+                <li>250g cherry tomatoes, halved</li>
+                <li>160g raw king prawns</li>
+                <li>20g parmesan</li>
+                <li>Fresh basil</li>
+            </ul>
+            <p><strong>Method:</strong></p>
+            <ol>
+                <li>Cook the pasta as per packet instructions.</li>
+                <li>Fry onions, garlic, and chili in a pan.</li>
+                <li>Add cherry tomatoes and simmer.</li>
+                <li>Add prawns and spinach; cook until done.</li>
+                <li>Mix pasta, parmesan, and basil; serve hot.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div id="modal5" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>The Best Gym Workout Plan For Gaining Muscle</h2>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <img src="assets/blog1.png" alt="Gym Workout Plan">
+            <p>While most people want to build muscle for aesthetic reasons, there are so many health benefits too, including:</p><br>
+            <ul>
+                <li>Increasing lean muscle mass, which means you'll burn more calories at rest</li>
+                <li>Addressing strength imbalances which can improve postural issues</li>
+                <li>Improve overall strength, coordination, and balance</li>
+                <li>Improve bone density and slow down bone loss</li>
+            </ul><br>
+            <p>Gaining muscle, known as muscular hypertrophy, requires some serious strength training. Strength training causes microscopic tears in the muscle fibres, which sounds scary but is actually a prerequisite of growth. As the body repairs these tissues, they get bigger, and when this is repeated again and again this results in visibly bigger muscles.</p><br>
+            <p>While all strength training will help to increase strength, there are certain ways to train that will maximise muscular hypertrophy. Read on to learn how to shape a strengthening workout plan that will help you to gain muscle, as well as some of the different approaches you could take</p><br>
+            <h3>How often and how much should you work out to gain muscle?</h3><br>
+            <p>There are a few factors to consider when designing a workout plan aimed at building muscle: frequency, volume, weight, and progressive overload.</p><br>
+            <h3>Frequency of workouts</h3><br>
+            <p>Most scientific studies on the matter conclude that a muscle needs to be worked at least two or three times a week in order to see it change and grow. This means you should aim to gym at least two times a week, up to a maximum of six times. It may be tempting to gym every day, but rest days are actually crucial when it comes to build muscle.</p><br>
+        </div>
+    </div>
+</div>
+
+<div id="modal6" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Banana Chocolate Trifle</h2>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <img src="assets/blog5.png" alt="Banana Chocolate Trifle">
+            <p><strong>Ingredients:</strong></p>
+            <ul>
+                <li>2 bananas</li>
+                <li>Peanut butter</li>
+                <li>Dark chocolate chips</li>
+                <li>Coconut oil</li>
+            </ul>
+            <p><strong>Method:</strong></p>
+            <ol>
+                <li>Slice bananas and make peanut butter sandwiches.</li>
+                <li>Freeze for 1 hour.</li>
+                <li>Melt chocolate and coconut oil.</li>
+                <li>Dip frozen banana sandwiches in chocolate.</li>
+                <li>Freeze again for 15-20 minutes.</li>
+                <li>Store in the freezer for up to 2 months.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<script>
+    //Display Blog Further Details
+    document.addEventListener('DOMContentLoaded', function() {
+    
+        const modals = document.querySelectorAll('.modal');
+        const readMoreButtons = document.querySelectorAll('.read-more');
+        const closeButtons = document.querySelectorAll('.close-btn');
+        
+        readMoreButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-modal');
+                document.getElementById(modalId).style.display = 'block';
+            });
+        });
+    
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+     
+        window.addEventListener('click', function(event) {
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
